@@ -23,7 +23,7 @@ export async function TodoContent(props: {slug?: string}) {
    // console.log(json)
 
    //sleep 1.5 seconds
-   await new Promise((resolve) => setTimeout(resolve, 1500));
+   //  await new Promise((resolve) => setTimeout(resolve, 1500));
 
    return <div>{JSON.stringify({...json, slug: props.slug, price: Date.now()})}</div>;
 }

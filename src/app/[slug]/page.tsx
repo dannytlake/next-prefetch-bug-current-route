@@ -6,7 +6,7 @@ import {SuspenseContent} from "../_components/SuspenseContent";
 
 import {linksStatic} from "../_components/constants";
 
-const dynamic = "force-static";
+// export const dynamic = "force-static";
 
 // If this page route is not statically rendered, throw an error
 // this prevents use of any dynamic function on the route
@@ -35,7 +35,8 @@ export default async function ContentPage({params}: {params: {slug: string}}) {
    //  await sleep(2);
 
    const data = await fetch(
-      `https://jsonplaceholder.typicode.com/todos/5?fakequery=${params.slug}`
+      `https://jsonplaceholder.typicode.com/todos/5?fakequery=${params.slug}`,
+      {next: {revalidate: 500}}
       //if cache is no-store, the loading spinner will show for every page route, even though we've statically generated them
       //   {
       //   cache: 'no-store',
@@ -45,7 +46,7 @@ export default async function ContentPage({params}: {params: {slug: string}}) {
 
    const myDate = new Date().toISOString();
 
-   console.log("myDate = ", myDate);
+   console.log("\n\n\n myDate = ", params.slug, myDate);
 
    return (
       <div>
