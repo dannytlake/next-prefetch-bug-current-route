@@ -1,6 +1,6 @@
 import React from "react";
 
-const Loading: React.FC = () => {
+export default function loading() {
    return (
       <div>
          <h2>Loading...</h2>
@@ -15,6 +15,4 @@ const Loading: React.FC = () => {
          {/* Add any additional loading indicators or animations here */}
       </div>
    );
-};
-
-export default Loading;
+}

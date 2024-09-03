@@ -1,2 +1,2 @@
-export const linksStatic = ['example', 'a', 'b', 'c']
-export const linksSSR = ['d', 'e']
+export const linksStatic = ["1", "2", "3", "4"];
+export const linksSSR = ["5", "6"];

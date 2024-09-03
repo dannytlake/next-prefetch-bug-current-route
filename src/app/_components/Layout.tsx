@@ -8,7 +8,9 @@ export const Layout = ({children}: {children: React.ReactNode}) => {
    return (
       <div className='flex flex-col justify-center p-6'>
          <div className='bg-yellow-400 pb-6'>
-            <h1 className='text-2xl font-bold'>Header</h1>
+            <h1 className='text-2xl font-bold'>
+               <NextLink href='/'>Home Page Link</NextLink>
+            </h1>
             <h5 className='text-lg font-semibold'>Settings:</h5>
             <p>Prefetch: {prefetch.toString()}</p>
             <h5 className='text-lg font-semibold'>Statically Generated Pages (/[slug]):</h5>
