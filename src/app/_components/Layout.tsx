@@ -1,7 +1,7 @@
 import React from "react";
 import NextLink from "next/link";
 
-const prefetch = false;
+const prefetch = undefined;
 import {linksSSR, linksStatic} from "./constants";
 
 export const Layout = ({children}: {children: React.ReactNode}) => {
@@ -12,7 +12,7 @@ export const Layout = ({children}: {children: React.ReactNode}) => {
                <NextLink href='/'>Home Page Link</NextLink>
             </h1>
             <h5 className='text-lg font-semibold'>Settings:</h5>
-            <p>Prefetch: {prefetch.toString()}</p>
+            <p>Prefetch: {prefetch}</p>
             <h5 className='text-lg font-semibold'>Statically Generated Pages (/[slug]):</h5>
             <div className='flex gap-2'>
                {linksStatic.map((link) => {

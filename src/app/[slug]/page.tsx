@@ -8,6 +8,7 @@ import {Suspense} from "react";
 import {linksStatic} from "../_components/constants";
 
 // export const dynamic = "force-static";
+// export const dynamicParams = true;
 
 // If this page route is not statically rendered, throw an error
 // this prevents use of any dynamic function on the route
@@ -17,10 +18,10 @@ import {linksStatic} from "../_components/constants";
 // this will cause any dynamic function like headers() and cookes() to return null
 //export const dynamic ='force-static'
 
-export async function generateStaticParams() {
-   // return [{ slug: 'example' }, { slug: 'a' }, { slug: 'b' }, { slug: 'c' }]
-   return linksStatic.map((slug) => ({slug: slug}));
-}
+// export async function generateStaticParams() {
+//    // return [{ slug: 'example' }, { slug: 'a' }, { slug: 'b' }, { slug: 'c' }]
+//    return linksStatic.map((slug) => ({slug: slug}));
+// }
 
 //function for sleeping ms
 function sleep(seconds: number) {
@@ -33,9 +34,7 @@ export default async function ContentPage({params}: {params: {slug: string}}) {
    //   locale: 'en-US',
    // })
 
-   const result = await fetch(`https://api.vercel.app/products/${params.slug}`, {
-      next: {revalidate: 500},
-   });
+   const result = await fetch(`https://api.vercel.app/products/${params.slug}`);
    const data = await result.json();
 
    await sleep(2);
@@ -59,9 +58,9 @@ export default async function ContentPage({params}: {params: {slug: string}}) {
          <h1>{Date.now()}</h1>
          <h1>{myDate}</h1>
          <h2>Product Name: {data.name}</h2>
-         {/* <Suspense fallback={<p>LOADING PRODUCT QUANTITY</p>}>
+         <Suspense fallback={<p>LOADING PRODUCT QUANTITY</p>}>
             <ProductQuantity />
-         </Suspense> */}
+         </Suspense>
          {JSON.stringify(data)}
          {/* {ContentItems(data?.content)} */}
          <div>
@@ -76,6 +75,6 @@ export default async function ContentPage({params}: {params: {slug: string}}) {
 async function ProductQuantity() {
    const result = await fetch("https://api.vercel.app/products/1");
    const data = await result.json();
-   await sleep(2);
+   await sleep(4);
    return <h1>{data.stock}</h1>;
 }
