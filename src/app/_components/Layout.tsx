@@ -27,6 +27,22 @@ export const Layout = ({children}: {children: React.ReactNode}) => {
                   /example/broken2
                </NextLink>
             </div>
+            <h5 className='text-lg font-semibold text-black'>
+               Broken prefetched Loading UI (/products/[slug]):
+            </h5>
+            <div className='flex gap-2'>
+               {links.map((link) => {
+                  return (
+                     <NextLink
+                        key={link}
+                        href={`/products/${link}`}
+                        className='text-blue-400 hover:text-blue-500'
+                     >
+                        Page {`/products/${link}`}
+                     </NextLink>
+                  );
+               })}
+            </div>
             <h5 className='text-lg font-semibold text-black pt-2'>
                Successful prefetched Loading UI (/works):
             </h5>
@@ -47,22 +63,6 @@ export const Layout = ({children}: {children: React.ReactNode}) => {
                         className='text-blue-400 hover:text-blue-500'
                      >
                         Page {link}
-                     </NextLink>
-                  );
-               })}
-            </div>
-            <h5 className='text-lg font-semibold text-black'>
-               Broken prefetched Loading UI (/products/[slug]):
-            </h5>
-            <div className='flex gap-2'>
-               {links.map((link) => {
-                  return (
-                     <NextLink
-                        key={link}
-                        href={`/products/${link}`}
-                        className='text-blue-400 hover:text-blue-500'
-                     >
-                        Page {`/products/${link}`}
                      </NextLink>
                   );
                })}
