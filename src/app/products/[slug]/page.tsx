@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 export default async function ContentPage({params}: {params: {slug: string}}) {
    const result = await fetch(`https://api.vercel.app/products/${params.slug}`);
    const data = await result.json();

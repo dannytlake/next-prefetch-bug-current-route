@@ -1,24 +1,47 @@
 import React from "react";
 import NextLink from "next/link";
 
-const prefetch = undefined;
-import {linksSSR, linksStatic} from "./constants";
+import {links} from "./constants";
 
 export const Layout = ({children}: {children: React.ReactNode}) => {
    return (
       <div className='flex flex-col justify-center p-6'>
          <div className='bg-yellow-400 pb-6'>
-            <h1 className='text-2xl font-bold'>
+            <h1 className='text-2xl font-bold text-black'>
                <NextLink href='/'>Home Page Link</NextLink>
             </h1>
-            <h5 className='text-lg font-semibold'>Settings:</h5>
-            <p>Prefetch: {prefetch}</p>
-            <h5 className='text-lg font-semibold'>Statically Generated Pages (/[slug]):</h5>
+
+            <h5 className='text-lg font-semibold text-black  pt-2'>
+               Broken prefetched Loading UI (/(example-route-group)/broken-route-group):
+            </h5>
             <div className='flex gap-2'>
-               {linksStatic.map((link) => {
+               <NextLink href={`/broken-route-group`} className='text-blue-400 hover:text-blue-500'>
+                  /broken-route-group
+               </NextLink>
+            </div>
+            <h5 className='text-lg font-semibold text-black  pt-2'>
+               Broken prefetched Loading UI (/example/broken2):
+            </h5>
+            <div className='flex gap-2'>
+               <NextLink href={`/example/broken2`} className='text-blue-400 hover:text-blue-500'>
+                  /example/broken2
+               </NextLink>
+            </div>
+            <h5 className='text-lg font-semibold text-black pt-2'>
+               Successful prefetched Loading UI (/works):
+            </h5>
+            <div className='flex gap-2'>
+               <NextLink href={`/works`} className='text-blue-400 hover:text-blue-500'>
+                  /works
+               </NextLink>
+            </div>
+            <h5 className='text-lg text-black font-semibold'>
+               Successful prefetched Loading UI (/[slug]):
+            </h5>
+            <div className='flex gap-2'>
+               {links.map((link) => {
                   return (
                      <NextLink
-                        prefetch={prefetch}
                         key={link}
                         href={`/${link}`}
                         className='text-blue-400 hover:text-blue-500'
@@ -28,32 +51,18 @@ export const Layout = ({children}: {children: React.ReactNode}) => {
                   );
                })}
             </div>
-            <h5 className='text-lg font-semibold'>Dynamic SSR Pages (/[slug]):</h5>
+            <h5 className='text-lg font-semibold text-black'>
+               Broken prefetched Loading UI (/products/[slug]):
+            </h5>
             <div className='flex gap-2'>
-               {linksSSR.map((link) => {
+               {links.map((link) => {
                   return (
                      <NextLink
-                        prefetch={prefetch}
                         key={link}
-                        href={`/${link}`}
+                        href={`/products/${link}`}
                         className='text-blue-400 hover:text-blue-500'
                      >
-                        Page {link}
-                     </NextLink>
-                  );
-               })}
-            </div>
-            <h5 className='text-lg font-semibold'>Dynamic SSR Pages (/testing/[slug]):</h5>
-            <div className='flex gap-2'>
-               {linksSSR.map((link) => {
-                  return (
-                     <NextLink
-                        prefetch={prefetch}
-                        key={link}
-                        href={`/testing/${link}`}
-                        className='text-blue-400 hover:text-blue-500'
-                     >
-                        Page {link}
+                        Page {`/products/${link}`}
                      </NextLink>
                   );
                })}
