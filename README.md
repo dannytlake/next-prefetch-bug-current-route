@@ -2,7 +2,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Next/Link prefetches current page
 
-This repository demonstrates an issue with the `next/link` component where it prefetches the current page that the browser is currently viewing. This is a waste of network + cpu resources.
+This repository demonstrates an issue with the `next/link` component where it prefetches the current page that the browser is currently viewing. This is a waste of network + cpu resources, as the page data has already been retrieved.
 
 This bug is reproducable in next@canary and react@beta:
 
@@ -22,5 +22,6 @@ The application must be run in production mode in order for the `next/link` pref
 -  run with `pnpm start`
 -  See the network tab prefetching the page routes, including the current page being viewied.
 
-See the below responses of each prefetch, taken with Firefox Developer Editon:
+See the below image for the network fetches of each `next/link`. This image shows that the route `/page2` is being prefetched, even though it is the current page being viewed.
+
 ![Prefetch Responses](image.png)
