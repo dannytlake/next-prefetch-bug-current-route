@@ -8,6 +8,12 @@ Note: Use Firefox Developer Edition to inspect the prefetched responses for each
 
 The documentation for `next/link` states the default behavior as "Prefetch behavior depends on whether the route is static or dynamic. For static routes, the full route will be prefetched (including all its data). For dynamic routes, the partial route down to the nearest segment with a loading.js boundary will be prefetched." - See https://nextjs.org/docs/app/api-reference/components/link#prefetch
 
+## Impact of issue
+
+This bug negatively affects the user experience by diminishing the perceived performance of navigating to dynamically rendered pages when using the default prefetch behavior. When users click a `<Link>`, the browser fails to display the `loading.js` fallback immediately and instead waits for it to be streamed after the navigation request is made. This delay in showing the loading UI can lead to a noticeable performance degradation, especially for users on slower networks or devices.
+
+Although the issue doesn't occur with all routing configurations, it poses a significant challenge for medium to large-scale websites that rely on dynamic rendering and have an app routing configuration beyond the most basic level, ie using route groups, or nested routes with dynamic segments underneath. Additionally, sites that rely on top-level dynamic route segments to support internationalization, ie `[locale]`, are particularly affected as this issue impacts all dynamically rendered pages that rely on the default prefetch behavior.
+
 ### Failure Cases
 
 The below cases show where the prefetching feature of `<Link>` fails to correctly fetch the loading.js boundary of each page. The response from the prefetch request to the server does not contain the loading.js fallback.
